@@ -1,0 +1,34 @@
+{
+  "name": "mm-services-manager",
+  "version": "0.0.1",
+  "description": "Service Manager for MicroMinion platform",
+  "main": "index.js",
+  "scripts": {
+    "check-updates": "npm-check",
+    "test": "echo",
+    "2npm": "publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicroMinion/mm-services-manager.git"
+  },
+  "keywords": [
+    "services",
+    "microminion"
+  ],
+  "author": {
+    "name": "Thomas Delaet",
+    "email": "thomas@delaet.org"
+  },
+  "devDependencies": {
+    "publish": "^0.6.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MicroMinion/mm-services-manager/issues"
+  },
+  "homepage": "https://github.com/MicroMinion/mm-services-manager#readme",
+  "dependencies": {
+    "lodash": "^4.14.1"
+  }
+}
