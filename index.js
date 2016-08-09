@@ -14,6 +14,8 @@ var ServiceManager = function (options) {
   this._storage = options.storage
   this._runtime = options.runtime
   this._services = ['serviceManager']
+  this.platform.messaging.on('self.serviceManager.list', this._list)
+  this.platform.messaging.on('self.serviceManager.activate', this._activate)
 }
 
 ServiceManager.prototype._load = function () {
@@ -33,8 +35,19 @@ ServiceManager.prototype._save = function () {
   this._storage.put('services', JSON.stringify(this._services))
 }
 
+ServiceManager.prototype._list = function (topic, publicKey, data) {
+  this.platform.messaging.send('serviceManager.listReply', publicKey, this._services)
+}
+
 ServiceManager.prototype.hasService = function (serviceName) {
   return _.has(this._services, serviceName)
+}
+
+ServiceManager.prototype._activate = function (topic, publicKey, data) {
+  var self = this
+  _.forEach(data, function (serviceName) {
+    self.activate(serviceName)
+  })
 }
 
 ServiceManager.prototype.activate = function (serviceName, dontSave) {
