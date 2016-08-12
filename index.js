@@ -16,6 +16,7 @@ var ServiceManager = function (options) {
   this._services = ['serviceManager']
   this.platform.messaging.on('self.serviceManager.list', this._list)
   this.platform.messaging.on('self.serviceManager.activate', this._activate)
+  this._load()
 }
 
 ServiceManager.prototype._load = function () {
@@ -40,7 +41,7 @@ ServiceManager.prototype._list = function (topic, publicKey, data) {
 }
 
 ServiceManager.prototype.hasService = function (serviceName) {
-  return _.has(this._services, serviceName)
+  return _.includes(this._services, serviceName)
 }
 
 ServiceManager.prototype._activate = function (topic, publicKey, data) {
