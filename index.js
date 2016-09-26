@@ -14,8 +14,8 @@ var ServiceManager = function (options) {
   this._storage = options.storage
   this._runtime = options.runtime
   this._services = ['serviceManager']
-  this.platform.messaging.on('self.serviceManager.list', this._list)
-  this.platform.messaging.on('self.serviceManager.activate', this._activate)
+  this.platform.messaging.on('self.serviceManager.list', this._list.bind(this))
+  this.platform.messaging.on('self.serviceManager.activate', this._activate.bind(this))
   this._load()
 }
 
