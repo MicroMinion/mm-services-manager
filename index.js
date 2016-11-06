@@ -2,6 +2,7 @@
 
 var assert = require('assert')
 var _ = require('lodash')
+var winstonWrapper = require('winston-meta-wrapper')
 
 var ServiceManager = function (options) {
   assert(_.isObject(options))
@@ -10,7 +11,10 @@ var ServiceManager = function (options) {
   assert(_.isObject(options.storage))
   assert(_.isObject(options.runtime))
   this.platform = options.platform
-  this._log = options.logger
+  this._log = winstonWrapper(options.logger)
+  this._log.addMeta({
+    module: 'mm:services:manager'
+  })
   this._storage = options.storage
   this._runtime = options.runtime
   this._services = ['serviceManager']
